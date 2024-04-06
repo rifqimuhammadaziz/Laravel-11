@@ -1,16 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    @foreach($users as $user)
-        <h1>{{ $user['name'] }}</h1>
-        <p>{{ $user['email'] }}</p>
-    @endforeach
-</body>
-</html>
+<x-app-layout title="Users">
+    <x-slot name="heading">Users</x-slot>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Created At</th>
+        </tr>
+        <tbody>
+        @foreach($users as $user)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->created_at->diffForHumans() }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+        </thead>
+    </table>
+</x-app-layout>
