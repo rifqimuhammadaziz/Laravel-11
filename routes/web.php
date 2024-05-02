@@ -9,10 +9,13 @@ Route::get('/', Controllers\HomeController::class);
 Route::get('/about', [Controllers\AboutController::class, 'index']);
 Route::get('/contact', [Controllers\ContactController::class, 'index']);
 Route::get('/gallery', [Controllers\GalleryController::class, 'index']);
+
 Route::get('/users', [Controllers\UserController::class, 'index']);
 Route::get('/users/create', [Controllers\UserController::class, 'create']);
 Route::post('/users', [Controllers\UserController::class, 'store']);
 Route::get('/users/{user:id}', [UserController::class, 'show']);
+Route::get('/users/{user:id}/edit', [UserController::class, 'edit']);
+Route::put('/users/{user:id}', [UserController::class, 'update']);
 
 
 Route::get('/articles/create', [ArticleController::class, 'create']);
