@@ -16,4 +16,14 @@ class UserController extends Controller
             'users' => $users
         ]);
     }
+
+    public function create() {
+        return view('users.create');
+    }
+
+    public function store(Request $request) {
+        User::create($request->only('name', 'email', 'password'));
+
+        return redirect('/users');
+    }
 }
