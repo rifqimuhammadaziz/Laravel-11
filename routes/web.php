@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', Controllers\HomeController::class);
@@ -20,3 +22,7 @@ Route::resource('users', UserController::class);
 // Route::delete('/users/{user:id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 Route::get('/articles/create', [ArticleController::class, 'create']);
+
+Route::get('login', [LoginController::class, 'loginForm'])->name('login')->middleware('guest');
+Route::post('login', [LoginController::class, 'authenticate'])->middleware('guest');
+Route::post('logout', LogoutController::class)->name('logout')->middleware('auth');

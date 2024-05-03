@@ -12,6 +12,19 @@
                         <x-navbar.link href="/contact">Contact</x-navbar.link>
                         <x-navbar.link href="/gallery">Gallery</x-navbar.link>
                         <x-navbar.link href="{{ route('users.index') }}">Users</x-navbar.link>
+                        @auth
+                        <x-navbar.link href="#">
+                            {{ Auth::user()->name}}
+                        </x-navbar.link>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <x-button type="submit">
+                                Log out
+                            </x-button>
+                        </form>
+                        @else
+                            <x-navbar.link href="{{ route('login') }}">Login</x-navbar.link>
+                        @endauth
                     </div>
                 </div>
             </div>
